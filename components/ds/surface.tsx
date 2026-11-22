@@ -1,11 +1,13 @@
 'use client'
 
 import type { ComponentPropsWithoutRef } from 'react'
+import { useDesign } from '@/components/providers/design-provider'
 import { cn } from '@/lib/utils'
 import type { CardTone } from '@/lib/types'
 
 export function usePalette(tone: CardTone) {
-  return tone === 'strong' ? 'pal-blue' : 'pal-light'
+  const { settings } = useDesign()
+  return tone === 'strong' || settings.theme === 'dark' ? 'pal-blue' : 'pal-light'
 }
 
 interface SurfaceProps extends ComponentPropsWithoutRef<'div'> {

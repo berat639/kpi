@@ -161,19 +161,19 @@ export function Dashboard() {
         <Header />
         <Summary />
         <Section title="Bugünün özeti" subtitle="Satış, ziyaretçi ve yeni müşteriler.">
-          <KpiCard metricId="sales" index={1} />
+          <KpiCard metricId="sales" tone="strong" index={1} />
           <KpiCard metricId="visitors" index={2} />
           <KpiCard metricId="newCustomers" index={3} />
         </Section>
         <Section title="Hedeflerimize ne kadar yakınız?" subtitle="Dolu kısım, hedefe ne kadar geldiğini gösterir.">
           <KpiCard metricId="monthlyGoal" index={1} />
-          <KpiCard metricId="satisfaction" index={2} />
+          <KpiCard metricId="satisfaction" tone="strong" index={2} />
           <KpiCard metricId="delivery" index={3} />
         </Section>
         <Section title="Neyin payı ne kadar?" subtitle="Parçaların bütün içindeki yerini gör.">
           <KpiCard metricId="channels" index={1} />
           <KpiCard metricId="expenses" index={2} />
-          <KpiCard metricId="topProducts" index={3} />
+          <KpiCard metricId="topProducts" tone="strong" index={3} />
         </Section>
         <Section title="Dikkat edilecekler" subtitle="Bekleme ve iade gibi, düşük olması iyi olan rakamlar.">
           <KpiCard metricId="waitTime" index={1} />
