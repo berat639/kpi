@@ -63,7 +63,14 @@
   --hi-blue: #9fd0ff;
   --good: #0f9d74;
   --watch: #d9780b;
+  --strong-bg-eff: var(--strong-bg);
+  --strong-sh: var(--sh-clay-strong);
+  --strong-sh-sm: var(--sh-clay-strong-sm);
+}
 
+/* Gölge ve kart jetonları: koyu temada açık kartlar için de yeniden hesaplanır */
+:root,
+:root[data-theme='dark'] .pal-light {
   /* Neomorph (aynı renk yüzey, çift gölge) */
   --sh-raised: calc(var(--d) * 9px) calc(var(--d) * 9px) calc(var(--d) * 20px) var(--sh-dark),
     calc(var(--d) * -9px) calc(var(--d) * -9px) calc(var(--d) * 20px) var(--sh-light);
@@ -93,9 +100,6 @@
   --card-sh: var(--sh-raised);
   --ctl-bg: var(--bg);
   --ctl-sh: var(--sh-raised-sm);
-  --strong-bg-eff: var(--strong-bg);
-  --strong-sh: var(--sh-clay-strong);
-  --strong-sh-sm: var(--sh-clay-strong-sm);
 }
 
 :root[data-theme='dark'] {
@@ -119,6 +123,8 @@
   --hi: #9fd0ff;
   --good: #19c394;
   --watch: #ffc24d;
+  --page-sh: calc(var(--d) * 9px) calc(var(--d) * 9px) calc(var(--d) * 20px) #1844b0,
+    calc(var(--d) * -9px) calc(var(--d) * -9px) calc(var(--d) * 20px) #4a82f2;
 }
 
 :root[data-style='neo'] {
@@ -132,6 +138,45 @@
   --card-sh: var(--sh-clay);
   --ctl-bg: var(--clay-bg);
   --ctl-sh: var(--sh-clay-sm);
+}
+
+/* Koyu temada sayfa #255ee3 kalır, kartlar açık beyaz olur */
+:root[data-theme='dark'] .pal-light {
+  color-scheme: light;
+  --bg: #f6f9ff;
+  --sh-light: #ffffff;
+  --sh-dark: #b9c9ea;
+  --clay-bg: linear-gradient(145deg, #ffffff 0%, #f3f7ff 55%, #e4edfc 100%);
+  --clay-drop: rgba(6, 24, 100, 0.45);
+  --clay-hi: rgba(255, 255, 255, 0.95);
+  --clay-lo: rgba(37, 94, 227, 0.16);
+  --hi: #0ea5e9;
+  --good: #0f9d74;
+  --watch: #d9780b;
+}
+:root[data-theme='dark'][data-accent='mint'] .pal-light {
+  --hi: #0f9f78;
+}
+:root[data-theme='dark'][data-accent='coral'] .pal-light {
+  --hi: #e5484d;
+}
+:root[data-theme='dark'][data-accent='amber'] .pal-light {
+  --hi: #d98200;
+}
+:root[data-theme='dark'][data-accent='violet'] .pal-light {
+  --hi: #7c5cf0;
+}
+:root[data-theme='dark'] .tone-raised.pal-light {
+  box-shadow: var(--page-sh);
+}
+:root[data-theme='dark'][data-style='clay'] .pal-light {
+  --card-bg: var(--clay-bg);
+  --card-sh: var(--sh-clay);
+  --ctl-bg: var(--clay-bg);
+  --ctl-sh: var(--sh-clay-sm);
+}
+:root[data-theme='dark'][data-style='clay'] .tone-raised.pal-light {
+  box-shadow: var(--sh-clay);
 }
 
 :root[data-radius='sharp'] {
