@@ -38,7 +38,7 @@
   --brand-900: #0c2155;
 
   --d: 1;
-  --r: 28px;
+  --r: 20px;
   --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -54,15 +54,15 @@
   --clay-lo: rgba(37, 94, 227, 0.1);
   --strong-bg: linear-gradient(145deg, #3a73ec 0%, #255ee3 50%, #1d4fc8 100%);
   --brand-flat: #255ee3;
-  --strong-drop: rgba(37, 94, 227, 0.26);
+  --strong-drop: rgba(37, 94, 227, 0.2);
   --strong-hi: rgba(255, 255, 255, 0.14);
   --strong-lo: rgba(8, 28, 110, 0.3);
   --tip-bg: #0c2155;
 
   /* Açık kart yüzeyi: zeminden ayrılan beyaz kart, ince çerçeve + yumuşak gölge */
   --card-surface: linear-gradient(165deg, #ffffff 0%, #fafcff 100%);
-  --card-sh-base: 0 0 0 1px rgba(37, 94, 227, 0.2), 0 10px 22px -12px rgba(28, 70, 170, 0.3),
-    0 2px 5px rgba(14, 33, 82, 0.07);
+  --card-sh-base: 0 0 0 1px rgba(37, 94, 227, 0.2), 0 6px 14px -10px rgba(28, 70, 170, 0.22),
+    0 1px 3px rgba(14, 33, 82, 0.05);
   --card-sh-clay: inset 0 2px 4px rgba(255, 255, 255, 0.9), inset 0 -5px 10px rgba(37, 94, 227, 0.05);
 
   --hi-ink: #0ea5e9;
@@ -88,12 +88,12 @@
   --sh-clay-sm: calc(var(--d) * 7px) calc(var(--d) * 9px) calc(var(--d) * 18px) var(--clay-drop),
     inset calc(var(--d) * 4px) calc(var(--d) * 4px) calc(var(--d) * 8px) var(--clay-hi),
     inset calc(var(--d) * -5px) calc(var(--d) * -5px) calc(var(--d) * 10px) var(--clay-lo);
-  --sh-clay-strong: calc(var(--d) * 14px) calc(var(--d) * 20px) calc(var(--d) * 36px) var(--strong-drop),
-    inset calc(var(--d) * 8px) calc(var(--d) * 8px) calc(var(--d) * 16px) var(--strong-hi),
-    inset calc(var(--d) * -10px) calc(var(--d) * -12px) calc(var(--d) * 22px) var(--strong-lo);
-  --sh-clay-strong-sm: calc(var(--d) * 7px) calc(var(--d) * 10px) calc(var(--d) * 18px) var(--strong-drop),
-    inset calc(var(--d) * 4px) calc(var(--d) * 4px) calc(var(--d) * 9px) var(--strong-hi),
-    inset calc(var(--d) * -5px) calc(var(--d) * -6px) calc(var(--d) * 11px) var(--strong-lo);
+  --sh-clay-strong: calc(var(--d) * 6px) calc(var(--d) * 10px) calc(var(--d) * 20px) var(--strong-drop),
+    inset calc(var(--d) * 4px) calc(var(--d) * 4px) calc(var(--d) * 10px) var(--strong-hi),
+    inset calc(var(--d) * -6px) calc(var(--d) * -7px) calc(var(--d) * 14px) var(--strong-lo);
+  --sh-clay-strong-sm: calc(var(--d) * 3px) calc(var(--d) * 5px) calc(var(--d) * 10px) var(--strong-drop),
+    inset calc(var(--d) * 2px) calc(var(--d) * 2px) calc(var(--d) * 6px) var(--strong-hi),
+    inset calc(var(--d) * -3px) calc(var(--d) * -4px) calc(var(--d) * 7px) var(--strong-lo);
 
   /* Stil moduna göre eşlenen jetonlar (mix varsayılan) */
   --card-bg: var(--card-surface);
@@ -128,8 +128,8 @@
 
   /* Koyu temada kartlar zeminden bir ton koyu mavi: göz yormaz, beyaz yazı rahat okunur */
   --card-surface: linear-gradient(165deg, #1b4bbd 0%, #1741a6 100%);
-  --card-sh-base: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 14px 26px -14px rgba(4, 14, 66, 0.55),
-    0 2px 6px rgba(4, 14, 66, 0.2);
+  --card-sh-base: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 8px 16px -10px rgba(4, 14, 66, 0.45),
+    0 1px 3px rgba(4, 14, 66, 0.15);
   --card-sh-clay: inset 0 2px 4px rgba(255, 255, 255, 0.1), inset 0 -6px 12px rgba(4, 14, 66, 0.16);
   --hi: #9fd0ff;
   --good: #19c394;
@@ -149,10 +149,10 @@
 }
 
 :root[data-radius='sharp'] {
-  --r: 14px;
+  --r: 10px;
 }
 :root[data-radius='round'] {
-  --r: 40px;
+  --r: 30px;
 }
 :root[data-text='lg'] {
   font-size: 112.5%;
@@ -308,13 +308,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  min-height: 4.25rem;
-  padding: 0.5rem 0.25rem;
-  border-radius: 16px;
+  min-height: 3.5rem;
+  padding: 0.4rem 0.2rem;
+  border-radius: 12px;
   background: var(--ctl-bg);
   box-shadow: var(--ctl-sh);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.7rem;
+  font-weight: 700;
   line-height: 1.1;
   text-align: center;
   overflow-wrap: anywhere;
@@ -339,7 +339,7 @@
   box-shadow: var(--sh-inset);
 }
 .tone-raised .picker-note {
-  min-height: 2.25rem;
+  min-height: 1.75rem;
 }
 .tone-strong {
   background: var(--strong-bg-eff);
@@ -347,7 +347,7 @@
   color: #ffffff;
 }
 .lift:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 /* Kontroller */
@@ -356,8 +356,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.5rem 1.1rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.875rem;
   border-radius: calc(var(--r) * 0.6);
   background: var(--ctl-bg);
   box-shadow: var(--ctl-sh);
@@ -385,8 +386,8 @@
   box-shadow: inset 4px 4px 10px var(--strong-lo), inset -4px -4px 10px var(--strong-hi);
 }
 .neo-icon-btn {
-  min-width: 2.75rem;
-  padding: 0.5rem;
+  min-width: 2.5rem;
+  padding: 0.4rem;
 }
 .neo-well {
   background: var(--well-bg);
@@ -419,8 +420,8 @@
 }
 .neo-range::-webkit-slider-thumb {
   appearance: none;
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 999px;
   background: var(--strong-bg-eff);
   box-shadow: var(--strong-sh-sm);
@@ -431,8 +432,8 @@
   transform: scale(1.12);
 }
 .neo-range::-moz-range-thumb {
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 999px;
   background: #255ee3;
   box-shadow: var(--strong-sh-sm);

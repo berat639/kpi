@@ -18,7 +18,17 @@ interface ChartViewProps {
  * Tek giriş noktası: herhangi bir Metric + herhangi bir ChartType alır.
  * Yeni bir grafik eklemek için: chart-registry.ts + ilgili dosyada bir case.
  */
-export function ChartView({ metric, type, height = 190 }: ChartViewProps) {
+const MIN_HEIGHT: Partial<Record<ChartType, number>> = {
+  donut: 148,
+  pie: 148,
+  ring: 156,
+  radar: 156,
+  gauge: 124,
+  blocks: 156,
+}
+
+export function ChartView({ metric, type, height: requestedHeight = 190 }: ChartViewProps) {
+  const height = Math.max(requestedHeight, MIN_HEIGHT[type] ?? 0)
   if (type === 'table') return <TableView metric={metric} height={height} />
   if (type === 'number') return <NumberView metric={metric} height={height} />
 

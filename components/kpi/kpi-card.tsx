@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 import type { CardSize, CardTone, ChartType, Metric } from '@/lib/types'
 import { ChartPicker } from './chart-picker'
 
-const HEIGHTS: Record<CardSize, number> = { sm: 130, md: 180, lg: 240 }
+const HEIGHTS: Record<CardSize, number> = { sm: 96, md: 132, lg: 180 }
 
 export interface KpiCardProps {
   /** Canlı veri kaynağındaki gösterge kimliği */
@@ -83,16 +83,16 @@ export function KpiCard({
       lift
       aria-labelledby={titleId}
       style={{ ['--i' as string]: index }}
-      className={cn('anim-rise flex flex-col gap-4 p-5 sm:p-6', className)}
+      className={cn('anim-rise flex flex-col gap-3 p-4 sm:p-5', className)}
     >
-      <header className="flex items-start justify-between gap-3">
-        <div className="flex min-w-0 items-center gap-3">
+      <header className="flex items-start justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2.5">
           <IconChip icon={getMetricIcon(metric.icon)} tone={metric.chip} />
           <div className="min-w-0">
-            <h3 id={titleId} className="text-lg font-extrabold leading-tight text-pretty">
+            <h3 id={titleId} className="text-base font-bold leading-tight text-pretty">
               {metric.title}
             </h3>
-            <p className="text-sm leading-snug text-fg-soft">{metric.question}</p>
+            <p className="text-[0.8125rem] leading-snug text-fg-soft">{metric.question}</p>
           </div>
         </div>
         <button
@@ -101,9 +101,9 @@ export function KpiCard({
           onClick={() => setPicking((open) => !open)}
           aria-expanded={picking}
           aria-controls={pickerId}
-          className="neo-btn neo-icon-btn shrink-0 px-3! text-sm"
+          className="neo-btn neo-icon-btn shrink-0 px-2.5! text-[0.8125rem]"
         >
-          <CurrentIcon className="size-5" aria-hidden="true" />
+          <CurrentIcon className="size-4" aria-hidden="true" />
           <span className="hidden sm:inline">Görünüm</span>
           <SlidersHorizontal className="size-4 sm:hidden" aria-hidden="true" />
           <span className="sr-only">
@@ -113,14 +113,14 @@ export function KpiCard({
       </header>
 
       {chart !== 'number' && (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5">
           <AnimatedNumber
             value={headline}
             format={(value) => formatNumber(value, metric.unit)}
-            className="text-4xl font-extrabold leading-none tracking-tight"
+            className="text-3xl font-extrabold leading-none tracking-tight"
           />
           <div className="flex min-w-0 flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 text-sm font-bold text-fg-soft">
+            <span className="inline-flex items-center gap-1 text-[0.8125rem] font-semibold text-fg-soft">
               <TrendIcon className="size-4" aria-hidden="true" />
               {trend.sentence}
             </span>
@@ -135,7 +135,7 @@ export function KpiCard({
 
       <footer className="mt-auto flex items-center justify-between gap-2 text-fg-soft">
         <LiveDot />
-        <span className="text-xs font-semibold" suppressHydrationWarning>
+        <span className="text-xs font-medium" suppressHydrationWarning>
           {updatedAt ? `Son güncelleme ${new Date(updatedAt).toLocaleTimeString('tr-TR')}` : metric.compareLabel + ' ile karşılaştırılır'}
         </span>
       </footer>

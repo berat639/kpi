@@ -16,12 +16,12 @@ import { Smile } from 'lucide-react'
 
 function Section({ title, subtitle, children }: { title: string; subtitle: string; children: ReactNode }) {
   return (
-    <section className="grid grid-cols-1 gap-5">
+    <section className="grid grid-cols-1 gap-3">
       <div>
-        <h2 className="text-2xl font-extrabold">{title}</h2>
-        <p className="text-fg-soft">{subtitle}</p>
+        <h2 className="text-lg font-bold sm:text-xl">{title}</h2>
+        <p className="text-sm text-fg-soft">{subtitle}</p>
       </div>
-      <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">{children}</div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">{children}</div>
     </section>
   )
 }
@@ -29,15 +29,15 @@ function Section({ title, subtitle, children }: { title: string; subtitle: strin
 function Header() {
   const { settings, update, setPanelOpen } = useDesign()
   return (
-    <header className="flex flex-wrap items-center justify-between gap-4">
-      <div className="flex items-center gap-4">
+    <header className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex items-center gap-3">
         <IconChip icon={Smile} tone="brand" size="lg" />
         <div>
-          <h1 className="text-balance text-3xl font-extrabold leading-tight sm:text-4xl">Bugün işler nasıl?</h1>
-          <p className="text-fg-soft">Dükkanının önemli rakamları, tek bakışta.</p>
+          <h1 className="text-balance text-2xl font-extrabold leading-tight sm:text-3xl">Bugün işler nasıl?</h1>
+          <p className="text-sm text-fg-soft">Dükkanının önemli rakamları, tek bakışta.</p>
         </div>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5">
         <LiveDot />
         <Segmented
           label="Tema"
@@ -50,7 +50,7 @@ function Header() {
           ]}
         />
         <button type="button" className="neo-btn neo-btn-primary" onClick={() => setPanelOpen(true)}>
-          <Palette className="size-5" aria-hidden="true" />
+          <Palette className="size-4" aria-hidden="true" />
           <span className="hidden sm:inline">Görünümü ayarla</span>
           <span className="sr-only sm:hidden">Görünümü ayarla</span>
         </button>
@@ -70,22 +70,22 @@ function Summary() {
   }, [metrics])
 
   return (
-    <Surface tone="strong" className="anim-rise flex flex-wrap items-center justify-between gap-4 p-6 sm:p-8">
+    <Surface tone="strong" className="anim-rise flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5">
       <div className="max-w-xl">
-        <p className="text-sm font-bold uppercase tracking-wide opacity-90">Genel durum</p>
-        <p className="mt-1 text-balance text-2xl font-extrabold leading-snug sm:text-3xl">
+        <p className="text-xs font-bold uppercase tracking-wide opacity-90">Genel durum</p>
+        <p className="mt-0.5 text-balance text-lg font-bold leading-snug sm:text-xl">
           {good} gösterge iyi gidiyor{watch > 0 ? `, ${watch} tanesine göz atmakta fayda var.` : '.'}
         </p>
-        <p className="mt-2 opacity-90">Her kartın sağ üstündeki “Görünüm” düğmesiyle grafiği dilediğin gibi değiştirebilirsin.</p>
+        <p className="mt-1 text-sm opacity-90">Her kartın sağ üstündeki “Görünüm” düğmesiyle grafiği dilediğin gibi değiştirebilirsin.</p>
       </div>
-      <div className="flex gap-3">
-        <div className="neo-well pal-blue min-w-24 px-5 py-3 text-center" style={{ background: 'rgba(255,255,255,0.14)' }}>
-          <p className="text-3xl font-extrabold tabular-nums">{good}</p>
-          <p className="text-sm font-bold">İyi</p>
+      <div className="flex gap-2">
+        <div className="neo-well pal-blue min-w-20 px-4 py-2 text-center" style={{ background: 'rgba(255,255,255,0.14)' }}>
+          <p className="text-2xl font-extrabold leading-tight tabular-nums">{good}</p>
+          <p className="text-xs font-bold">İyi</p>
         </div>
-        <div className="neo-well pal-blue min-w-24 px-5 py-3 text-center" style={{ background: 'rgba(255,255,255,0.14)' }}>
-          <p className="text-3xl font-extrabold tabular-nums">{watch}</p>
-          <p className="text-sm font-bold">Dikkat</p>
+        <div className="neo-well pal-blue min-w-20 px-4 py-2 text-center" style={{ background: 'rgba(255,255,255,0.14)' }}>
+          <p className="text-2xl font-extrabold leading-tight tabular-nums">{watch}</p>
+          <p className="text-xs font-bold">Dikkat</p>
         </div>
       </div>
     </Surface>
@@ -99,18 +99,18 @@ function Gallery() {
   if (!metric) return null
 
   return (
-    <section className="grid grid-cols-1 gap-5" aria-labelledby="gallery-title">
-      <div className="flex flex-wrap items-end justify-between gap-4">
+    <section className="grid grid-cols-1 gap-3" aria-labelledby="gallery-title">
+      <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 id="gallery-title" className="text-2xl font-extrabold">Tüm grafik seçenekleri</h2>
-          <p className="text-fg-soft">Bir gösterge seç, ona uyan bütün görünümleri yan yana gör.</p>
+          <h2 id="gallery-title" className="text-lg font-bold sm:text-xl">Tüm grafik seçenekleri</h2>
+          <p className="text-sm text-fg-soft">Bir gösterge seç, ona uyan bütün görünümleri yan yana gör.</p>
         </div>
-        <label className="grid w-full gap-1.5 text-sm font-bold sm:w-auto">
+        <label className="grid w-full gap-1 text-xs font-bold sm:w-auto">
           Gösterge
           <select
             value={metric.id}
             onChange={(event) => setSelected(event.target.value)}
-            className="neo-well min-h-11 w-full cursor-pointer px-4 font-bold sm:min-w-56"
+            className="neo-well min-h-10 w-full cursor-pointer px-3 text-sm font-semibold sm:min-w-52"
           >
             {metrics.map((item) => (
               <option key={item.id} value={item.id}>
@@ -120,7 +120,7 @@ function Gallery() {
           </select>
         </label>
       </div>
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {metric.supports.map((type, index) => {
           const meta = CHART_META[type]
           const Icon = meta.icon
@@ -128,17 +128,17 @@ function Gallery() {
             <Surface
               key={`${metric.id}-${type}`}
               tone="raised"
-              className="anim-rise flex flex-col gap-3 p-5"
+              className="anim-rise flex flex-col gap-2.5 p-4"
               style={{ ['--i' as string]: index }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <IconChip icon={Icon} tone={metric.chip} size="sm" />
                 <div>
-                  <h3 className="font-extrabold leading-tight">{meta.label}</h3>
-                  <p className="text-sm text-fg-soft">{meta.hint}</p>
+                  <h3 className="text-sm font-bold leading-tight">{meta.label}</h3>
+                  <p className="text-xs text-fg-soft">{meta.hint}</p>
                 </div>
               </div>
-              <ChartView metric={metric} type={type} height={150} />
+              <ChartView metric={metric} type={type} height={120} />
             </Surface>
           )
         })}
@@ -157,7 +157,7 @@ export function Dashboard() {
       <a href="#icerik" className="skip-link neo-btn neo-btn-primary">
         İçeriğe geç
       </a>
-      <main id="icerik" className="mx-auto grid max-w-[88rem] grid-cols-1 gap-8 sm:gap-10 px-4 py-6 sm:px-8 sm:py-10">
+      <main id="icerik" className="mx-auto grid max-w-[80rem] grid-cols-1 gap-6 px-4 py-4 sm:gap-8 sm:px-6 sm:py-8">
         <Header />
         <Summary />
         <Section title="Bugünün özeti" subtitle="Satış, ziyaretçi ve yeni müşteriler.">

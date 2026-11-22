@@ -63,12 +63,12 @@ export function ChartPicker({ id, title, options, value, tone, onSelect, onClose
       role="dialog"
       aria-label={`${title} için grafik türünü seç`}
       className={cn(
-        'picker-pop anim-tray absolute inset-x-3 top-[4.5rem] z-30 flex flex-col gap-2.5 p-3 sm:left-auto sm:right-4 sm:top-[4.75rem] sm:w-[21rem]',
+        'picker-pop anim-tray absolute inset-x-3 top-[3.75rem] z-30 flex flex-col gap-2 p-2.5 sm:left-auto sm:right-3 sm:top-[4rem] sm:w-[19rem]',
         palette,
       )}
     >
-      <p className="px-1 text-sm font-extrabold">Nasıl görmek istersin?</p>
-      <div role="radiogroup" aria-label="Grafik türü" className="grid grid-cols-4 gap-1.5">
+      <p className="px-1 text-[0.8125rem] font-bold">Nasıl görmek istersin?</p>
+      <div role="radiogroup" aria-label="Grafik türü" className="grid grid-cols-4 gap-1">
         {options.map((option, index) => {
           const meta = CHART_META[option]
           const Icon = meta.icon
@@ -91,13 +91,13 @@ export function ChartPicker({ id, title, options, value, tone, onSelect, onClose
               }}
               className="picker-opt"
             >
-              <Icon className="size-5 shrink-0" aria-hidden="true" />
+              <Icon className="size-4 shrink-0" aria-hidden="true" />
               <span>{meta.label}</span>
             </button>
           )
         })}
       </div>
-      <p className="picker-note px-1 text-xs font-semibold leading-snug opacity-85" aria-live="polite">
+      <p className="picker-note px-1 text-xs font-medium leading-snug opacity-85" aria-live="polite">
         {CHART_META[active].hint}
       </p>
     </div>

@@ -63,17 +63,17 @@ export function IconChip({
   className?: string
 }) {
   const [light, dark] = CHIP_COLORS[tone]
-  const dimension = size === 'sm' ? 'size-9' : size === 'lg' ? 'size-14' : 'size-12'
+  const dimension = size === 'sm' ? 'size-8' : size === 'lg' ? 'size-12' : 'size-10'
   return (
     <span
       aria-hidden="true"
       className={cn('grid shrink-0 place-items-center rounded-[34%] text-white', dimension, className)}
       style={{
         background: `linear-gradient(145deg, ${light}, ${dark})`,
-        boxShadow: `calc(var(--d) * 4px) calc(var(--d) * 6px) calc(var(--d) * 12px) ${dark}66, inset 3px 3px 6px rgba(255,255,255,0.5), inset -4px -4px 8px rgba(0,0,0,0.22)`,
+        boxShadow: `calc(var(--d) * 2px) calc(var(--d) * 3px) calc(var(--d) * 6px) ${dark}44, inset 2px 2px 4px rgba(255,255,255,0.4), inset -2px -2px 5px rgba(0,0,0,0.16)`,
       }}
     >
-      <Icon className={size === 'lg' ? 'size-7' : size === 'sm' ? 'size-4' : 'size-6'} strokeWidth={2.4} />
+      <Icon className={size === 'lg' ? 'size-6' : size === 'sm' ? 'size-4' : 'size-5'} strokeWidth={2.4} />
     </span>
   )
 }
@@ -135,10 +135,10 @@ export function StatusPill({
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-extrabold',
+        'inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[0.8125rem] font-bold',
         className,
       )}
-      style={{ background: 'var(--chip-bg)', boxShadow: 'inset 2px 2px 5px rgba(0,0,0,0.08)' }}
+      style={{ background: 'var(--chip-bg)', boxShadow: 'none' }}
     >
       <Icon className="size-4 shrink-0" style={{ color }} strokeWidth={2.8} aria-hidden="true" />
       {label}
@@ -151,7 +151,7 @@ export function LiveDot({ className }: { className?: string }) {
   const { ticks } = useLiveData()
   const active = settings.live
   return (
-    <span className={cn('inline-flex items-center gap-2 text-sm font-bold', className)}>
+    <span className={cn('inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold', className)}>
       <span className="relative grid size-3 place-items-center" aria-hidden="true">
         {active && (
           <span

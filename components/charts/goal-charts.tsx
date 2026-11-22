@@ -33,10 +33,10 @@ interface InnerProps {
 function CenterText({ metric, percent }: { metric: GoalMetric; percent: number }) {
   return (
     <div className="text-center">
-      <p className="text-3xl font-extrabold leading-none tabular-nums sm:text-4xl">
+      <p className="text-2xl font-extrabold leading-none tabular-nums sm:text-3xl">
         %{Math.round(percent)}
       </p>
-      <p className="mt-1 text-xs font-semibold text-fg-soft">
+      <p className="mx-auto mt-1 max-w-[6.25rem] text-balance text-[0.6875rem] font-medium leading-tight text-fg-soft">
         {metric.targetLabel}: {formatNumber(metric.target, metric.unit)}
       </p>
     </div>
