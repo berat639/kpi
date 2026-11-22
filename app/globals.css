@@ -1,0 +1,521 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is([data-theme='dark'] *));
+
+@theme inline {
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-brand: var(--brand);
+  --color-hi: var(--hi);
+  --color-c1: var(--c1);
+  --color-c2: var(--c2);
+  --color-c3: var(--c3);
+  --color-c4: var(--c4);
+  --color-c5: var(--c5);
+  --color-c6: var(--c6);
+  --radius-card: var(--r);
+  --radius-ctl: calc(var(--r) * 0.6);
+}
+
+/* ------------------------------------------------------------------ */
+/* 1. Tokens: Açık tema = #e7effc zemin, Koyu tema = #255ee3 zemin     */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --brand: #255ee3;
+  --brand-50: #eef3fe;
+  --brand-100: #e7effc;
+  --brand-200: #c9dafa;
+  --brand-300: #9dbbf6;
+  --brand-400: #5f8ceb;
+  --brand-500: #255ee3;
+  --brand-600: #1b4bc0;
+  --brand-700: #153b9a;
+  --brand-800: #112f78;
+  --brand-900: #0c2155;
+
+  --d: 1;
+  --r: 28px;
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --bg: #e7effc;
+  --fg: #0e2152;
+  --fg-soft: #394f82;
+  --focus: #0e2152;
+  --sh-light: #ffffff;
+  --sh-dark: #b3c5e8;
+  --clay-bg: linear-gradient(145deg, #f6faff 0%, #e7effc 55%, #d9e5fa 100%);
+  --clay-drop: rgba(37, 94, 227, 0.2);
+  --clay-hi: rgba(255, 255, 255, 0.95);
+  --clay-lo: rgba(37, 94, 227, 0.16);
+  --strong-bg: linear-gradient(145deg, #4a82f2 0%, #255ee3 48%, #1a49bf 100%);
+  --brand-flat: #255ee3;
+  --strong-drop: rgba(37, 94, 227, 0.42);
+  --strong-hi: rgba(255, 255, 255, 0.38);
+  --strong-lo: rgba(8, 28, 110, 0.4);
+  --tip-bg: #0c2155;
+
+  --hi: #0ea5e9;
+  --hi-blue: #9fd0ff;
+  --good: #0f9d74;
+  --watch: #d9780b;
+
+  /* Neomorph (aynı renk yüzey, çift gölge) */
+  --sh-raised: calc(var(--d) * 9px) calc(var(--d) * 9px) calc(var(--d) * 20px) var(--sh-dark),
+    calc(var(--d) * -9px) calc(var(--d) * -9px) calc(var(--d) * 20px) var(--sh-light);
+  --sh-raised-sm: calc(var(--d) * 5px) calc(var(--d) * 5px) calc(var(--d) * 11px) var(--sh-dark),
+    calc(var(--d) * -5px) calc(var(--d) * -5px) calc(var(--d) * 11px) var(--sh-light);
+  --sh-inset: inset calc(var(--d) * 6px) calc(var(--d) * 6px) calc(var(--d) * 14px) var(--sh-dark),
+    inset calc(var(--d) * -6px) calc(var(--d) * -6px) calc(var(--d) * 14px) var(--sh-light);
+  --sh-inset-sm: inset calc(var(--d) * 3px) calc(var(--d) * 3px) calc(var(--d) * 7px) var(--sh-dark),
+    inset calc(var(--d) * -3px) calc(var(--d) * -3px) calc(var(--d) * 7px) var(--sh-light);
+
+  /* Claymorph (şişkin, iç ışık + renkli gölge) */
+  --sh-clay: calc(var(--d) * 14px) calc(var(--d) * 18px) calc(var(--d) * 34px) var(--clay-drop),
+    inset calc(var(--d) * 7px) calc(var(--d) * 7px) calc(var(--d) * 14px) var(--clay-hi),
+    inset calc(var(--d) * -9px) calc(var(--d) * -9px) calc(var(--d) * 18px) var(--clay-lo);
+  --sh-clay-sm: calc(var(--d) * 7px) calc(var(--d) * 9px) calc(var(--d) * 18px) var(--clay-drop),
+    inset calc(var(--d) * 4px) calc(var(--d) * 4px) calc(var(--d) * 8px) var(--clay-hi),
+    inset calc(var(--d) * -5px) calc(var(--d) * -5px) calc(var(--d) * 10px) var(--clay-lo);
+  --sh-clay-strong: calc(var(--d) * 14px) calc(var(--d) * 20px) calc(var(--d) * 36px) var(--strong-drop),
+    inset calc(var(--d) * 8px) calc(var(--d) * 8px) calc(var(--d) * 16px) var(--strong-hi),
+    inset calc(var(--d) * -10px) calc(var(--d) * -12px) calc(var(--d) * 22px) var(--strong-lo);
+  --sh-clay-strong-sm: calc(var(--d) * 7px) calc(var(--d) * 10px) calc(var(--d) * 18px) var(--strong-drop),
+    inset calc(var(--d) * 4px) calc(var(--d) * 4px) calc(var(--d) * 9px) var(--strong-hi),
+    inset calc(var(--d) * -5px) calc(var(--d) * -6px) calc(var(--d) * 11px) var(--strong-lo);
+
+  /* Stil moduna göre eşlenen jetonlar (mix varsayılan) */
+  --card-bg: var(--bg);
+  --card-sh: var(--sh-raised);
+  --ctl-bg: var(--bg);
+  --ctl-sh: var(--sh-raised-sm);
+  --strong-bg-eff: var(--strong-bg);
+  --strong-sh: var(--sh-clay-strong);
+  --strong-sh-sm: var(--sh-clay-strong-sm);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #255ee3;
+  --fg: #ffffff;
+  --fg-soft: rgba(255, 255, 255, 0.86);
+  --focus: #ffffff;
+  --sh-light: #4a82f2;
+  --sh-dark: #1844b0;
+  --clay-bg: linear-gradient(145deg, #3b75ef 0%, #2a62e0 55%, #2158d2 100%);
+  --clay-drop: rgba(6, 24, 100, 0.5);
+  --clay-hi: rgba(255, 255, 255, 0.3);
+  --clay-lo: rgba(6, 28, 110, 0.4);
+  --strong-bg: linear-gradient(145deg, #1f55cc 0%, #1a49b8 48%, #143a98 100%);
+  --brand-flat: #1a49b8;
+  --strong-drop: rgba(5, 20, 90, 0.55);
+  --strong-hi: rgba(255, 255, 255, 0.24);
+  --strong-lo: rgba(4, 18, 80, 0.5);
+  --tip-bg: #0c2155;
+  --hi: #9fd0ff;
+  --good: #19c394;
+  --watch: #ffc24d;
+}
+
+:root[data-style='neo'] {
+  --strong-bg-eff: var(--brand-flat);
+  --strong-sh: var(--sh-raised);
+  --strong-sh-sm: var(--sh-raised-sm);
+}
+
+:root[data-style='clay'] {
+  --card-bg: var(--clay-bg);
+  --card-sh: var(--sh-clay);
+  --ctl-bg: var(--clay-bg);
+  --ctl-sh: var(--sh-clay-sm);
+}
+
+:root[data-radius='sharp'] {
+  --r: 14px;
+}
+:root[data-radius='round'] {
+  --r: 40px;
+}
+:root[data-text='lg'] {
+  font-size: 112.5%;
+}
+:root[data-text='xl'] {
+  font-size: 125%;
+}
+
+:root[data-accent='mint'] {
+  --hi: #0f9f78;
+  --hi-blue: #6ff0c4;
+}
+:root[data-accent='coral'] {
+  --hi: #e5484d;
+  --hi-blue: #ffa0aa;
+}
+:root[data-accent='amber'] {
+  --hi: #d98200;
+  --hi-blue: #ffd36e;
+}
+:root[data-accent='violet'] {
+  --hi: #7c5cf0;
+  --hi-blue: #cbb8ff;
+}
+:root[data-theme='dark'][data-accent='sky'] {
+  --hi: #9fd0ff;
+}
+:root[data-theme='dark'][data-accent='mint'] {
+  --hi: #6ff0c4;
+}
+:root[data-theme='dark'][data-accent='coral'] {
+  --hi: #ffa0aa;
+}
+:root[data-theme='dark'][data-accent='amber'] {
+  --hi: #ffd36e;
+}
+:root[data-theme='dark'][data-accent='violet'] {
+  --hi: #cbb8ff;
+}
+
+/* Yüzey paletleri: zemine göre okunur grafik renkleri */
+.pal-light {
+  --fg: #0e2152;
+  --fg-soft: #394f82;
+  --grid: rgba(14, 33, 82, 0.14);
+  --focus: #0e2152;
+  --c1: #255ee3;
+  --c2: var(--hi);
+  --c3: #12a57f;
+  --c4: #d98200;
+  --c5: #e5484d;
+  --c6: #7c5cf0;
+  --chip-bg: rgba(37, 94, 227, 0.1);
+  --on-c1: #ffffff;
+  --on-series: #0e2152;
+}
+.pal-blue {
+  --fg: #ffffff;
+  --fg-soft: rgba(255, 255, 255, 0.86);
+  --grid: rgba(255, 255, 255, 0.24);
+  --focus: #ffffff;
+  --c1: #ffffff;
+  --c2: var(--hi-blue);
+  --c3: #6ff0c4;
+  --c4: #ffd36e;
+  --c5: #ffa0aa;
+  --c6: #cbb8ff;
+  --chip-bg: rgba(255, 255, 255, 0.16);
+  --on-c1: #0c2155;
+  --on-series: #0c2155;
+}
+:root[data-theme='dark'] .pal-blue {
+  --c2: var(--hi);
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Temel                                                            */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    background: var(--bg);
+    transition: background-color 0.5s var(--ease-soft);
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: 'tnum' 1;
+    min-height: 100dvh;
+    transition: color 0.4s var(--ease-soft), background-color 0.5s var(--ease-soft);
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 12px;
+  }
+}
+
+@layer components {
+/* ------------------------------------------------------------------ */
+/* 3. Yüzeyler                                                         */
+/* ------------------------------------------------------------------ */
+.surface {
+  position: relative;
+  border-radius: var(--r);
+  color: var(--fg);
+  transition: box-shadow 0.45s var(--ease-soft), transform 0.45s var(--ease-pop),
+    background-color 0.5s var(--ease-soft);
+}
+.tone-raised {
+  background: var(--card-bg);
+  box-shadow: var(--card-sh);
+}
+.tone-inset {
+  background: var(--bg);
+  box-shadow: var(--sh-inset);
+}
+.tone-strong {
+  background: var(--strong-bg-eff);
+  box-shadow: var(--strong-sh);
+  color: #ffffff;
+}
+.lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Kontroller */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: calc(var(--r) * 0.6);
+  background: var(--ctl-bg);
+  box-shadow: var(--ctl-sh);
+  color: var(--fg);
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-pop), box-shadow 0.3s var(--ease-soft);
+}
+.neo-btn:hover {
+  transform: translateY(-2px);
+}
+.neo-btn:active,
+.neo-btn[aria-pressed='true'],
+.neo-btn[aria-checked='true'][data-pressable] {
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--sh-inset-sm);
+}
+.neo-btn-primary {
+  background: var(--strong-bg-eff);
+  box-shadow: var(--strong-sh-sm);
+  color: #ffffff;
+}
+.neo-btn-primary:active {
+  box-shadow: inset 4px 4px 10px var(--strong-lo), inset -4px -4px 10px var(--strong-hi);
+}
+.neo-icon-btn {
+  min-width: 2.75rem;
+  padding: 0.5rem;
+}
+.neo-well {
+  background: var(--bg);
+  box-shadow: var(--sh-inset-sm);
+  border-radius: calc(var(--r) * 0.6);
+}
+.tone-strong .neo-btn:not(.neo-btn-primary) {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 4px 6px 12px var(--strong-drop), inset 2px 2px 5px rgba(255, 255, 255, 0.35),
+    inset -3px -3px 7px var(--strong-lo);
+}
+.tone-strong .neo-btn:not(.neo-btn-primary):active,
+.tone-strong .neo-btn[aria-pressed='true']:not(.neo-btn-primary) {
+  box-shadow: inset 3px 3px 7px var(--strong-lo), inset -3px -3px 7px rgba(255, 255, 255, 0.25);
+}
+.tone-strong .neo-well {
+  background: rgba(6, 24, 100, 0.22);
+  box-shadow: inset 3px 3px 7px rgba(5, 20, 90, 0.45), inset -3px -3px 7px rgba(255, 255, 255, 0.2);
+}
+
+/* Kaydırıcı */
+.neo-range {
+  appearance: none;
+  width: 100%;
+  height: 0.9rem;
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: var(--sh-inset-sm);
+  cursor: pointer;
+}
+.neo-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: var(--strong-bg-eff);
+  box-shadow: var(--strong-sh-sm);
+  border: 0;
+  transition: transform 0.25s var(--ease-pop);
+}
+.neo-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.neo-range::-moz-range-thumb {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: #255ee3;
+  box-shadow: var(--strong-sh-sm);
+  border: 0;
+}
+
+/* Tablo */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.35rem;
+  font-size: 0.9rem;
+}
+.data-table th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--fg-soft);
+  padding: 0 0.75rem;
+  font-size: 0.78rem;
+}
+.data-table td {
+  padding: 0.45rem 0.75rem;
+  background: var(--chip-bg);
+}
+.data-table td:first-child {
+  border-radius: 12px 0 0 12px;
+  font-weight: 600;
+}
+.data-table td:last-child {
+  border-radius: 0 12px 12px 0;
+  text-align: right;
+  font-weight: 800;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Hareket                                                          */
+/* ------------------------------------------------------------------ */
+:root {
+  --m: 1;
+}
+:root[data-motion='calm'] {
+  --m: 0.6;
+}
+
+@keyframes rise-in {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes chart-swap {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+@keyframes tray-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes float-blob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, -32px, 0) scale(1.08);
+  }
+}
+@keyframes ping-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+@keyframes squish {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.96, 1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.anim-rise {
+  animation: rise-in calc(0.8s / var(--m)) var(--ease-soft) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+.anim-swap {
+  animation: chart-swap calc(0.55s / var(--m)) var(--ease-pop) both;
+}
+.anim-tray {
+  animation: tray-in 0.4s var(--ease-pop) both;
+}
+.anim-squish {
+  animation: squish 0.5s var(--ease-pop);
+}
+.anim-ping {
+  animation: ping-ring 1.4s ease-out;
+}
+.blob {
+  animation: float-blob 18s ease-in-out infinite;
+}
+.grow-x {
+  transform-origin: left center;
+  animation: grow-x 0.9s var(--ease-soft) both;
+}
+
+:root[data-motion='off'] *,
+:root[data-motion='off'] *::before,
+:root[data-motion='off'] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none;
+  }
+}
+
+/* Recharts: odak çizgisini temizle */
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none;
+}
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+}
