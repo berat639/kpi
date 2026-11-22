@@ -13,7 +13,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { formatNumber } from '@/lib/metric-utils'
+import { formatCompact, formatNumber } from '@/lib/metric-utils'
 import type { ChartType, TimeMetric } from '@/lib/types'
 import { AXIS_TICK, ChartBox, ChartTooltip, useChartMotion, useSafeId } from './shared'
 
@@ -136,29 +136,48 @@ function HeatStrip({ metric, height }: { metric: TimeMetric; height: number }) {
   const min = Math.min(...values)
   const max = Math.max(...values)
   const range = max - min || 1
+  const count = metric.points.length
+  const gap = count > 8 ? 4 : 6
+  const plainUnit = { ...metric.unit, prefix: '', suffix: '' }
+  const texts = metric.points.map((point) => formatCompact(point.value, plainUnit))
+  const longest = Math.max(...texts.map((text) => text.length))
+  // Çok sütunda sayı dikey yazılır; az sütunda yatay yazılır ve sütun genişliğine göre küçülür.
+  const vertical = count > 8
+  const cell = `((100cqw - ${(count - 1) * gap}px) / ${count})`
+  const fontSize = vertical
+    ? `clamp(0.62rem, calc(${cell} / 1.5), 0.85rem)`
+    : `clamp(0.62rem, calc(${cell} / ${(longest * 0.66).toFixed(2)}), 0.9rem)`
   return (
     <div className="flex w-full flex-col justify-center gap-3" style={{ height }}>
       <ul
-        className="grid gap-2"
-        style={{ gridTemplateColumns: `repeat(${metric.points.length}, minmax(0, 1fr))` }}
+        className="grid [container-type:inline-size]"
+        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))`, gap }}
       >
-        {metric.points.map((point) => {
+        {metric.points.map((point, pointIndex) => {
           const intensity = (point.value - min) / range
+          const showLabel = !vertical || pointIndex % 3 === 0
           return (
-            <li key={point.label} className="flex flex-col items-center gap-1.5">
+            <li key={point.label} className="flex min-w-0 flex-col items-center gap-1.5">
               <span
-                className="grid w-full place-items-center rounded-2xl text-xs font-extrabold transition-all duration-700 [transition-timing-function:var(--ease-pop)] sm:text-sm"
+                className="grid w-full place-items-center overflow-hidden rounded-xl font-extrabold leading-none tabular-nums transition-all duration-700 [transition-timing-function:var(--ease-pop)]"
                 style={{
-                  height: Math.max(56, height * 0.5),
+                  height: Math.max(vertical ? 84 : 56, height * 0.5),
+                  fontSize,
+                  writingMode: vertical ? 'vertical-rl' : undefined,
+                  transform: vertical ? 'rotate(180deg)' : undefined,
                   background: `color-mix(in srgb, var(--c1) ${Math.round(16 + intensity * 74)}%, transparent)`,
                   color: intensity > 0.5 ? 'var(--on-c1)' : 'var(--fg)',
-                  boxShadow:
-                    'inset 3px 3px 6px rgba(255,255,255,0.35), inset -3px -3px 7px rgba(0,0,0,0.12)',
+                  boxShadow: 'inset 2px 2px 4px rgba(255,255,255,0.22), inset -2px -2px 5px rgba(0,0,0,0.1)',
                 }}
               >
-                {formatNumber(point.value, { ...metric.unit, prefix: '', suffix: '' })}
+                {texts[pointIndex]}
               </span>
-              <span className="text-xs font-semibold text-fg-soft">{point.label}</span>
+              <span
+                className={`block max-w-full whitespace-nowrap text-[0.7rem] font-semibold text-fg-soft sm:text-xs ${showLabel ? '' : 'invisible'}`}
+                style={vertical ? { overflow: 'visible' } : undefined}
+              >
+                {point.label}
+              </span>
             </li>
           )
         })}

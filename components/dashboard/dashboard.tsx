@@ -16,12 +16,12 @@ import { Smile } from 'lucide-react'
 
 function Section({ title, subtitle, children }: { title: string; subtitle: string; children: ReactNode }) {
   return (
-    <section className="grid gap-5">
+    <section className="grid grid-cols-1 gap-5">
       <div>
         <h2 className="text-2xl font-extrabold">{title}</h2>
         <p className="text-fg-soft">{subtitle}</p>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">{children}</div>
+      <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">{children}</div>
     </section>
   )
 }
@@ -99,18 +99,18 @@ function Gallery() {
   if (!metric) return null
 
   return (
-    <section className="grid gap-5" aria-labelledby="gallery-title">
+    <section className="grid grid-cols-1 gap-5" aria-labelledby="gallery-title">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 id="gallery-title" className="text-2xl font-extrabold">Tüm grafik seçenekleri</h2>
           <p className="text-fg-soft">Bir gösterge seç, ona uyan bütün görünümleri yan yana gör.</p>
         </div>
-        <label className="grid gap-1.5 text-sm font-bold">
+        <label className="grid w-full gap-1.5 text-sm font-bold sm:w-auto">
           Gösterge
           <select
             value={metric.id}
             onChange={(event) => setSelected(event.target.value)}
-            className="neo-well min-h-11 min-w-56 cursor-pointer px-4 font-bold"
+            className="neo-well min-h-11 w-full cursor-pointer px-4 font-bold sm:min-w-56"
           >
             {metrics.map((item) => (
               <option key={item.id} value={item.id}>
@@ -120,14 +120,14 @@ function Gallery() {
           </select>
         </label>
       </div>
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {metric.supports.map((type, index) => {
           const meta = CHART_META[type]
           const Icon = meta.icon
           return (
             <Surface
               key={`${metric.id}-${type}`}
-              tone="inset"
+              tone="raised"
               className="anim-rise flex flex-col gap-3 p-5"
               style={{ ['--i' as string]: index }}
             >
@@ -151,13 +151,13 @@ export function Dashboard() {
   return (
     <div className="relative isolate overflow-x-clip">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="blob absolute -left-24 top-10 size-96 rounded-full opacity-40 blur-3xl" style={{ background: 'var(--c2)' }} />
-        <div className="blob absolute -right-24 top-96 size-[28rem] rounded-full opacity-30 blur-3xl [animation-delay:-6s]" style={{ background: 'var(--c3)' }} />
+        <div className="blob absolute -left-24 top-10 size-72 rounded-full opacity-20 blur-3xl sm:size-96" style={{ background: 'var(--c2)' }} />
+        <div className="blob absolute -right-24 top-96 size-80 rounded-full opacity-15 blur-3xl [animation-delay:-6s] sm:size-[28rem]" style={{ background: 'var(--c3)' }} />
       </div>
       <a href="#icerik" className="skip-link neo-btn neo-btn-primary">
         İçeriğe geç
       </a>
-      <main id="icerik" className="mx-auto grid max-w-[88rem] gap-10 px-4 py-6 sm:px-8 sm:py-10">
+      <main id="icerik" className="mx-auto grid max-w-[88rem] grid-cols-1 gap-8 sm:gap-10 px-4 py-6 sm:px-8 sm:py-10">
         <Header />
         <Summary />
         <Section title="Bugünün özeti" subtitle="Satış, ziyaretçi ve yeni müşteriler.">

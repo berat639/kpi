@@ -46,33 +46,40 @@
   --fg: #0e2152;
   --fg-soft: #394f82;
   --focus: #0e2152;
-  --sh-light: #ffffff;
-  --sh-dark: #b3c5e8;
-  --clay-bg: linear-gradient(145deg, #f6faff 0%, #e7effc 55%, #d9e5fa 100%);
-  --clay-drop: rgba(37, 94, 227, 0.2);
-  --clay-hi: rgba(255, 255, 255, 0.95);
-  --clay-lo: rgba(37, 94, 227, 0.16);
-  --strong-bg: linear-gradient(145deg, #4a82f2 0%, #255ee3 48%, #1a49bf 100%);
+  --sh-light: rgba(255, 255, 255, 0.6);
+  --sh-dark: #c3d2ee;
+  --clay-bg: linear-gradient(145deg, #f3f7ff 0%, #e7effc 55%, #dbe6fa 100%);
+  --clay-drop: rgba(37, 94, 227, 0.12);
+  --clay-hi: rgba(255, 255, 255, 0.5);
+  --clay-lo: rgba(37, 94, 227, 0.1);
+  --strong-bg: linear-gradient(145deg, #3a73ec 0%, #255ee3 50%, #1d4fc8 100%);
   --brand-flat: #255ee3;
-  --strong-drop: rgba(37, 94, 227, 0.42);
-  --strong-hi: rgba(255, 255, 255, 0.38);
-  --strong-lo: rgba(8, 28, 110, 0.4);
+  --strong-drop: rgba(37, 94, 227, 0.26);
+  --strong-hi: rgba(255, 255, 255, 0.14);
+  --strong-lo: rgba(8, 28, 110, 0.3);
   --tip-bg: #0c2155;
 
+  /* Açık kart yüzeyi: zeminden ayrılan beyaz kart, ince çerçeve + yumuşak gölge */
+  --card-surface: linear-gradient(165deg, #ffffff 0%, #fafcff 100%);
+  --card-sh-base: 0 0 0 1px rgba(37, 94, 227, 0.2), 0 10px 22px -12px rgba(28, 70, 170, 0.3),
+    0 2px 5px rgba(14, 33, 82, 0.07);
+  --card-sh-clay: inset 0 2px 4px rgba(255, 255, 255, 0.9), inset 0 -5px 10px rgba(37, 94, 227, 0.05);
+
+  --hi-ink: #0ea5e9;
   --hi: #0ea5e9;
   --hi-blue: #9fd0ff;
   --good: #0f9d74;
   --watch: #d9780b;
 
   /* Neomorph (aynı renk yüzey, çift gölge) */
-  --sh-raised: calc(var(--d) * 9px) calc(var(--d) * 9px) calc(var(--d) * 20px) var(--sh-dark),
-    calc(var(--d) * -9px) calc(var(--d) * -9px) calc(var(--d) * 20px) var(--sh-light);
-  --sh-raised-sm: calc(var(--d) * 5px) calc(var(--d) * 5px) calc(var(--d) * 11px) var(--sh-dark),
-    calc(var(--d) * -5px) calc(var(--d) * -5px) calc(var(--d) * 11px) var(--sh-light);
-  --sh-inset: inset calc(var(--d) * 6px) calc(var(--d) * 6px) calc(var(--d) * 14px) var(--sh-dark),
-    inset calc(var(--d) * -6px) calc(var(--d) * -6px) calc(var(--d) * 14px) var(--sh-light);
-  --sh-inset-sm: inset calc(var(--d) * 3px) calc(var(--d) * 3px) calc(var(--d) * 7px) var(--sh-dark),
-    inset calc(var(--d) * -3px) calc(var(--d) * -3px) calc(var(--d) * 7px) var(--sh-light);
+  --sh-raised: calc(var(--d) * 6px) calc(var(--d) * 6px) calc(var(--d) * 14px) var(--sh-dark),
+    calc(var(--d) * -5px) calc(var(--d) * -5px) calc(var(--d) * 12px) var(--sh-light);
+  --sh-raised-sm: calc(var(--d) * 3px) calc(var(--d) * 3px) calc(var(--d) * 8px) var(--sh-dark),
+    calc(var(--d) * -3px) calc(var(--d) * -3px) calc(var(--d) * 7px) var(--sh-light);
+  --sh-inset: inset calc(var(--d) * 4px) calc(var(--d) * 4px) calc(var(--d) * 10px) var(--sh-dark),
+    inset calc(var(--d) * -4px) calc(var(--d) * -4px) calc(var(--d) * 10px) var(--sh-light);
+  --sh-inset-sm: inset calc(var(--d) * 2px) calc(var(--d) * 2px) calc(var(--d) * 5px) var(--sh-dark),
+    inset calc(var(--d) * -2px) calc(var(--d) * -2px) calc(var(--d) * 5px) var(--sh-light);
 
   /* Claymorph (şişkin, iç ışık + renkli gölge) */
   --sh-clay: calc(var(--d) * 14px) calc(var(--d) * 18px) calc(var(--d) * 34px) var(--clay-drop),
@@ -89,10 +96,12 @@
     inset calc(var(--d) * -5px) calc(var(--d) * -6px) calc(var(--d) * 11px) var(--strong-lo);
 
   /* Stil moduna göre eşlenen jetonlar (mix varsayılan) */
-  --card-bg: var(--bg);
-  --card-sh: var(--sh-raised);
+  --card-bg: var(--card-surface);
+  --card-sh: var(--card-sh-base);
   --ctl-bg: var(--bg);
   --ctl-sh: var(--sh-raised-sm);
+  --well-bg: var(--bg);
+  --well-sh: var(--sh-inset-sm);
   --strong-bg-eff: var(--strong-bg);
   --strong-sh: var(--sh-clay-strong);
   --strong-sh-sm: var(--sh-clay-strong-sm);
@@ -104,18 +113,24 @@
   --fg: #ffffff;
   --fg-soft: rgba(255, 255, 255, 0.86);
   --focus: #ffffff;
-  --sh-light: #4a82f2;
-  --sh-dark: #1844b0;
-  --clay-bg: linear-gradient(145deg, #3b75ef 0%, #2a62e0 55%, #2158d2 100%);
-  --clay-drop: rgba(6, 24, 100, 0.5);
-  --clay-hi: rgba(255, 255, 255, 0.3);
-  --clay-lo: rgba(6, 28, 110, 0.4);
-  --strong-bg: linear-gradient(145deg, #1f55cc 0%, #1a49b8 48%, #143a98 100%);
-  --brand-flat: #1a49b8;
-  --strong-drop: rgba(5, 20, 90, 0.55);
-  --strong-hi: rgba(255, 255, 255, 0.24);
-  --strong-lo: rgba(4, 18, 80, 0.5);
-  --tip-bg: #0c2155;
+  --sh-light: #3068e6;
+  --sh-dark: #1d4bb9;
+  --clay-bg: linear-gradient(145deg, #2f69e8 0%, #2a62e0 55%, #2558d2 100%);
+  --clay-drop: rgba(6, 24, 100, 0.3);
+  --clay-hi: rgba(255, 255, 255, 0.1);
+  --clay-lo: rgba(6, 28, 110, 0.26);
+  --strong-bg: linear-gradient(150deg, #123584 0%, #0e2b70 55%, #0b2260 100%);
+  --brand-flat: #0e2b70;
+  --strong-drop: rgba(4, 14, 66, 0.4);
+  --strong-hi: rgba(255, 255, 255, 0.08);
+  --strong-lo: rgba(2, 10, 50, 0.4);
+  --tip-bg: #0a1d52;
+
+  /* Koyu temada kartlar zeminden bir ton koyu mavi: göz yormaz, beyaz yazı rahat okunur */
+  --card-surface: linear-gradient(165deg, #1b4bbd 0%, #1741a6 100%);
+  --card-sh-base: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 14px 26px -14px rgba(4, 14, 66, 0.55),
+    0 2px 6px rgba(4, 14, 66, 0.2);
+  --card-sh-clay: inset 0 2px 4px rgba(255, 255, 255, 0.1), inset 0 -6px 12px rgba(4, 14, 66, 0.16);
   --hi: #9fd0ff;
   --good: #19c394;
   --watch: #ffc24d;
@@ -128,8 +143,7 @@
 }
 
 :root[data-style='clay'] {
-  --card-bg: var(--clay-bg);
-  --card-sh: var(--sh-clay);
+  --card-sh: var(--card-sh-base), var(--card-sh-clay);
   --ctl-bg: var(--clay-bg);
   --ctl-sh: var(--sh-clay-sm);
 }
@@ -149,18 +163,22 @@
 
 :root[data-accent='mint'] {
   --hi: #0f9f78;
+  --hi-ink: #0f9f78;
   --hi-blue: #6ff0c4;
 }
 :root[data-accent='coral'] {
   --hi: #e5484d;
+  --hi-ink: #e5484d;
   --hi-blue: #ffa0aa;
 }
 :root[data-accent='amber'] {
   --hi: #d98200;
+  --hi-ink: #d98200;
   --hi-blue: #ffd36e;
 }
 :root[data-accent='violet'] {
   --hi: #7c5cf0;
+  --hi-ink: #7c5cf0;
   --hi-blue: #cbb8ff;
 }
 :root[data-theme='dark'][data-accent='sky'] {
@@ -186,7 +204,7 @@
   --grid: rgba(14, 33, 82, 0.14);
   --focus: #0e2152;
   --c1: #255ee3;
-  --c2: var(--hi);
+  --c2: var(--hi-ink);
   --c3: #12a57f;
   --c4: #d98200;
   --c5: #e5484d;
@@ -194,6 +212,9 @@
   --chip-bg: rgba(37, 94, 227, 0.1);
   --on-c1: #ffffff;
   --on-series: #0e2152;
+  --dot-ring: #ffffff;
+  --good: #0b8a64;
+  --watch: #b45f06;
 }
 .pal-blue {
   --fg: #ffffff;
@@ -209,6 +230,7 @@
   --chip-bg: rgba(255, 255, 255, 0.16);
   --on-c1: #0c2155;
   --on-series: #0c2155;
+  --dot-ring: #1d4fc9;
 }
 :root[data-theme='dark'] .pal-blue {
   --c2: var(--hi);
@@ -251,10 +273,73 @@
 .tone-raised {
   background: var(--card-bg);
   box-shadow: var(--card-sh);
+  --ctl-bg: #eef3fe;
+  --ctl-sh: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px -2px rgba(37, 94, 227, 0.26),
+    0 0 0 1px rgba(37, 94, 227, 0.1);
+  --well-bg: #e8effc;
+  --well-sh: inset 2px 2px 5px rgba(37, 94, 227, 0.14), inset -2px -2px 4px rgba(255, 255, 255, 0.9);
+}
+:root[data-theme='dark'] .tone-raised {
+  --ctl-bg: rgba(255, 255, 255, 0.12);
+  --ctl-sh: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 3px 8px -2px rgba(4, 14, 66, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  --well-bg: rgba(4, 14, 66, 0.28);
+  --well-sh: inset 2px 2px 6px rgba(4, 14, 66, 0.5), inset -1px -1px 3px rgba(255, 255, 255, 0.1);
+}
+.picker-pop {
+  background: #ffffff;
+  color: #0e2152;
+  border-radius: calc(var(--r) * 0.6);
+  box-shadow: 0 0 0 1px rgba(37, 94, 227, 0.18), 0 18px 32px -10px rgba(5, 20, 90, 0.4),
+    0 3px 8px rgba(5, 20, 90, 0.1);
+  --ctl-bg: #eef3fe;
+  --ctl-sh: 0 0 0 1px rgba(37, 94, 227, 0.1);
+}
+.picker-pop.pal-blue {
+  background: #0c2566;
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 18px 32px -10px rgba(2, 10, 50, 0.6);
+  --ctl-bg: rgba(255, 255, 255, 0.1);
+  --ctl-sh: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.picker-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-height: 4.25rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: 16px;
+  background: var(--ctl-bg);
+  box-shadow: var(--ctl-sh);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-pop), background-color 0.2s;
+}
+.picker-opt:hover {
+  transform: translateY(-2px);
+}
+.picker-opt[aria-checked='true'] {
+  background: #255ee3;
+  color: #ffffff;
+  box-shadow: 0 4px 10px -3px rgba(37, 94, 227, 0.55);
+}
+.picker-pop.pal-blue .picker-opt[aria-checked='true'] {
+  background: #ffffff;
+  color: #0c2155;
 }
 .tone-inset {
   background: var(--bg);
   box-shadow: var(--sh-inset);
+}
+.tone-raised .picker-note {
+  min-height: 2.25rem;
 }
 .tone-strong {
   background: var(--strong-bg-eff);
@@ -289,7 +374,7 @@
 .neo-btn[aria-pressed='true'],
 .neo-btn[aria-checked='true'][data-pressable] {
   transform: translateY(0) scale(0.98);
-  box-shadow: var(--sh-inset-sm);
+  box-shadow: var(--well-sh);
 }
 .neo-btn-primary {
   background: var(--strong-bg-eff);
@@ -304,8 +389,8 @@
   padding: 0.5rem;
 }
 .neo-well {
-  background: var(--bg);
-  box-shadow: var(--sh-inset-sm);
+  background: var(--well-bg);
+  box-shadow: var(--well-sh);
   border-radius: calc(var(--r) * 0.6);
 }
 .tone-strong .neo-btn:not(.neo-btn-primary) {
@@ -328,8 +413,8 @@
   width: 100%;
   height: 0.9rem;
   border-radius: 999px;
-  background: var(--bg);
-  box-shadow: var(--sh-inset-sm);
+  background: var(--well-bg);
+  box-shadow: var(--well-sh);
   cursor: pointer;
 }
 .neo-range::-webkit-slider-thumb {
